@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Card Game - Start</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #096b03;
+            background: url('assets/wedding-hall.jpg') no-repeat center center;
+            background-size: 2000px 2000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Princess Sofia', sans-serif;
+            color: rgb(241, 5, 190);
+        }
+        .start-container {
+            text-align: center;
+            background: #fccfcf;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .start-button {
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #086103;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .start-button:hover {
+            background-color: #065102;
+        }
+        .sound-icon {
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            top: 0%;
+            right: 20px;
+            transform: translate(50%, -50%);
+            font-size: 20px;
+            color: #8f83f7;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .sound-icon:hover {
+            color: #d3d4d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="start-container">
+        <h1>Wedding Card Game</h1>
+        <i class="fas fa-volume-up sound-icon" onclick="playMusic()"></i>
+        <button class="start-button" onclick="startGame()">Start Game</button>
+    </div>
+    <audio id="background-music" src="assets/background-music.mp3" loop></audio>
+    <script>
+        function startGame() {
+            window.location.href = 'index.html'; // Redirect to game page
+        }
+
+        function playMusic() {
+            const audio = document.getElementById('background-music');
+            audio.play().then(() => {
+                console.log('Music playing...');
+            }).catch(error => {
+                console.error('Music playback failed:', error);
+            });
+        }
+    </script>
+</body>
+</html>
