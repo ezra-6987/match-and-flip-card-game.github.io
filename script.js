@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('grid');
-    const minutesDisplay = document.getElementById('minutes');
     const secondsDisplay = document.getElementById('seconds');
     const scoreDisplay = document.getElementById('score');
     const messageDisplay = document.getElementById('message');
@@ -10,10 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let timeLeft = 30; // 30 seconds
 
     function updateTimer() {
-        const minutes = Math.floor(timeLeft/60);
         const seconds = timeLeft % 60;
-
-        minutesDisplay.textContent = minutes < 10 ? '0' + minutes : minutes;
+        
         secondsDisplay.textContent = seconds < 10 ? '0' + seconds : seconds;
 
         if (timeLeft > 0) {
@@ -30,14 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Mapping card values to image names
     const imageMapping = {
-        1: 'attire.jpg',
-        2: 'buffet.jpg',
-        3: 'cake.jpg',
-        4: 'calendar.jpg',
-        5: 'dais.jpg',
-        6: 'invitation.jpg',
-        7: 'photographer.jpg',
-        8: 'ring.jpg'
+        1: 'bride-attire.png',
+        2: 'buffet.png',
+        3: 'cake.png',
+        4: 'calendar.png',
+        5: 'groom-attire.png',
+        6: 'invitation.png',
+        7: 'photographer.png',
+        8: 'ring.png'
     };
 
     // Generate card values (pairs)
@@ -96,16 +93,54 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (score >= 5) {
             optionB();
         }
+        localStorage.setItem('score', score);
+        window.location.href = 'completion.html'
     }
 
     //Option A function
     function optionA() {
-        messageDisplay.textContent = 'Low Budget: Go for modest wedding!';
+        // Clear any previous content in the message display
+        messageDisplay.innerHTML = '';
+        
+        // Create an img element
+        const img = document.createElement('img');
+        img.src = 'assets/modest-wedding.png'; // Replace with your image path
+        img.alt = 'Go for modest wedding!';
+        img.style.width = '35%'; // Adjust the image size as needed
+        img.style.height = 'auto';
+        img.style.position = 'absolute'; // Position absolute to use bottom, right
+        img.style.bottom = '50%'; // Adjust the distance from the bottom
+        img.style.right = '80%'; // Adjust the distance from the right
+        img.style.transform = 'translate(-50%, -50%)';
+    
+        // Append the img element to the message display
+        messageDisplay.style.position = 'relative'; // Ensure parent element is positioned
+        messageDisplay.appendChild(img);
     }
+    
+    
 
     //Option B function
     function optionB() {
-        messageDisplay.textContent = 'High/Sufficient Budget: Grand wedding? Not a big deal!';
+        // Clear any previous content in the message display
+        messageDisplay.innerHTML = '';
+        
+        // Create an img element
+        const img = document.createElement('img');
+        img.src = 'assets/dream-wedding.png'; // Replace with your image path
+        img.alt = 'Go for dream wedding!';
+        img.style.width = '35%'; // Adjust the image size as needed
+        img.style.height = 'auto';
+        img.style.position = 'absolute'; // Position absolute to use bottom, right
+        img.style.bottom = '50%'; // Adjust the distance from the bottom
+        img.style.right = '80%'; // Adjust the distance from the right
+        img.style.transform = 'translate(-50%, -50%)';
+
+        // Append the img element to the message display
+        messageDisplay.style.position = 'relative'; // Ensure parent element is positioned
+        messageDisplay.appendChild(img);
     }
+    
+    
 
 });

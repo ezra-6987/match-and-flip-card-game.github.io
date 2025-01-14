@@ -9,60 +9,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
+            margin: 0;
+            font-family: 'Proxima Nova', sans-serif;
             background-color: #096b03;
-            background: url('assets/wedding-hall.jpg') no-repeat center center;
-            background-size: 2000px 2000px;
+            background: url('assets/start-background.png') no-repeat center right;
+            background-size: 1400px 1400px;
             display: flex;
+            justify-content: right;
+            align-items: right;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .left-strip {
+            width: 20%;
+            background-color: #f0f0f000;
+        }
+        .main-content {
+            width: 80%;
+            background-color: #f6f7f600;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Princess Sofia', sans-serif;
-            color: rgb(241, 5, 190);
+            color: white;
         }
-        .start-container {
-            text-align: center;
-            background: #fccfcf;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .title-image {
+            width: 50%; /* Adjust the size as needed */
+            height: auto; /* Maintain aspect ratio */
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            top: 40%;
+            right: 500px;
+            transform: translate(50%, -50%)
         }
         .start-button {
-            font-size: 24px;
+            font-size: 2.0em;
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            bottom: 15%;
+            right: 500px;
+            transform: translate(50%, -50%);
             padding: 10px 20px;
             background-color: #086103;
             color: #ffffff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            transition: all 0.3s;
         }
         .start-button:hover {
             background-color: #065102;
+            transform: scale(1.1);
         }
         .sound-icon {
             display: flex;
             position: absolute;
             justify-content: center;
             align-items: center;
-            top: 0%;
-            right: 20px;
+            top: 5%;
+            left: 30px;
             transform: translate(50%, -50%);
-            font-size: 20px;
-            color: #8f83f7;
+            font-size: 15px;
+            color: #086103;
             cursor: pointer;
-            margin-top: 20px;
         }
         .sound-icon:hover {
-            color: #d3d4d3;
+            color: #065102;
         }
     </style>
 </head>
 <body>
-    <div class="start-container">
-        <h1>Wedding Card Game</h1>
-        <i class="fas fa-volume-up sound-icon" onclick="playMusic()"></i>
-        <button class="start-button" onclick="startGame()">Start Game</button>
+    <div class="container">
+        <div class="left-strip"></div>
+        <div class="main-content">
+            <img src="assets/mix-and-match.png" alt="Mix & Match" class="title-image">
+            <i class="fas fa-volume-up sound-icon" onclick="playMusic()"></i>
+            <div class="start-button" onclick="startGame()">Start!</div>
+        </div>
     </div>
     <audio id="background-music" src="assets/background-music.mp3" loop></audio>
     <script>

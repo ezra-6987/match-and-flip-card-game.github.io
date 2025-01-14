@@ -9,14 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #c9f7c7;
-            background: url('assets/background.png') no-repeat center center;
-            background-size: 2000px, 2000px;
+            background-color: #c9f7c700;
+            background: url('assets/game-background.png') no-repeat center center;
+            background-size: 1400px, 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: left;
+            height: 100vh;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 100px);
             grid-gap: 10px;
+            position: absolute;
+            top: 50%;
+            right: 400px;
+            transform: translateY(-50%);
         }
         .card {
             width: 100px;
@@ -24,13 +32,13 @@
             background: url('assets/scribble.jpg') no-repeat center center;
             background-size: cover;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items:center;
+            justify-content:right;
             font-size: 24px;
             cursor: pointer;
         }
         .hidden {
-            background-color: white;
+            background-color: rgb(255, 255, 255);
         }
         .card img {
             width: 100%;
@@ -40,76 +48,122 @@
         }
         #message {
             position: absolute;
-            top: 50%;
+            bottom: 50%;
             right: 200px;
             transform: translateY(-50%);
-            background: #f17373;
+            background: #05050500;
             padding: 10px;
-            border: 1px solid #72fc6e;
+            border: 1px solid #eaeee900;
             border-radius: 5px;
             font-family: 'Jersey 10', sans-serif;
             font-size: 30px;
             color: aquamarine;
         }
-        h1 {
-            font-family: 'Honk', sans-serif;
-            font-size: 70px;
-            color: #9638ee;
-        }
-        .timer {
+        .title-image {
+            width: 30%; /* Adjust the size as needed */
+            height: auto; /* Maintain aspect ratio */
             display: flex;
             position: absolute;
             justify-content: center;
             align-items: center;
-            top: 25%;
-            right: 600px;
+            top: 15%;
+            left: 30px;
+            transform: translate(30 -10%);
+        }
+        .timer {
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            position: absolute;
+            top: 20%;
+            right: 250px;
             transform: translate(50%, -50%);
-            font-family: 'Jersey 10', sans-serif;
+            font-family: 'Proxima Nova Bold', sans-serif;
             font-size: 60px;
             color: rgb(255, 127, 127);
-            background: url('assets/timer-colon.png') no-repeat center center;
-            background-size: cover;
-            margin: 0 auto;
-            width: 200px;
-            height: 100px;
+        }
+        .timer .colon {
+            width: 100px; /* Smaller width */
+            height: 50px; /* Fixed height */
+            object-fit: contain; /* Ensure the image fits within the specified dimensions */
+            margin: 0 5px; /* Adjust the margin */
         }
         .score {
             display: flex;
             position: absolute;
             justify-content: center;
             align-items: center;
-            top: 23%;
-            right: 300px;
+            top: 30%;
+            right: 250px;
             transform: translate(50%, -50%);
-            background: #22a2f7;
+            background: #22a2f700;
             padding: 10px;
             border: 1px solid #2d03c500;
             border-radius: 5px;
-            font-family: 'Jersey 10', sans-serif;
+            font-family: 'Proxima Nova Bold', sans-serif;
             font-size: 50px;
             color: rgb(85, 3, 3);
-            background: url('assets/scoreboard.png') no-repeat center center;
             background-size: cover;
             margin: 0 auto;
             width: 200px;
             height: 100px;
         }
+        .text-box{
+            font-size: 18px;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0);
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0);
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            bottom: 40%;
+            left: 10px;
+            transform: translate(5%, -10%);
+            font-family: 'Proxima Nova Bold Italic', sans-serif;
+        }
+        .timer-text-box{
+            font-size: 30px;
+            color: rgb(3, 80, 20);
+            border: 2px solid rgba(255, 255, 255, 0);
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0);
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            bottom: 40%;
+            left: 10px;
+            transform: translate(5%, -10%);
+        }
     </style>
 </head>
 <body class="text-center">
     <div class="container">
-        <h1 class="my-4">Wedding Card Game</h1>
+        <div class="left-strip">
+            <div class="text-box">
+                Find and match the pairs of your wedding items!
+            </div>
+        </div>
+        <div class="main-content">
+        <img src="assets/mix-and-match.png" alt="Mix & Match" class="title-image">
         <audio id="background-music" src="assets/background-music.mp3" autoplay loop></audio>
         <div class="timer">
-            <span id="minutes">00</span>
-            <div class="colon"></div>
-            <span id="seconds">30</span>
+            <img src="assets/timer-colon.png" alt="Colon" class="colon">
+            <span id="seconds">30s</span>
+            <div class="timer-text-box">
+                Time
+            </div>
         </div>
-        <div class="score my-2">Score: <span id="score">0</span></div>
+        <div class="score my-2">Score:<br><span id="score">0</span></div>
         <div class="grid" id="grid">
             <!-- Cards will be generated here -->
         </div>
         <div id="message" class="my-3"></div>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
