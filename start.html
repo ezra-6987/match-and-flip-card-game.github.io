@@ -3,112 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Card Game - Start</title>
+    <title>Wedding Card Game</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            font-family: 'Proxima Nova', sans-serif;
-            background-color: #096b03;
-            background: url('assets/start-background.png') no-repeat center right;
-            background-size: 1400px 1400px;
+            background-color: #c9f7c700;
+            background: url('assets/game-background.png') no-repeat center center;
+            background-size: 1400px, 1400px;
             display: flex;
-            justify-content: right;
-            align-items: right;
+            justify-content: center;
+            align-items: left;
             height: 100vh;
         }
-        .container {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            position: absolute;
+            top: 50%;
+            right: 400px;
+            transform: translateY(-50%);
+        }
+        .card {
+            width: 100px;
+            height: 100px;
+            background: url('assets/scribble.jpg') no-repeat center center;
+            background-size: cover;
             display: flex;
+            align-items:center;
+            justify-content:right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .hidden {
+            background-color: rgb(255, 255, 255);
+        }
+        .card img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            display: none;
         }
-        .left-strip {
-            width: 20%;
-            background-color: #f0f0f000;
-        }
-        .main-content {
-            width: 80%;
-            background-color: #f6f7f600;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
+        #message {
+            position: absolute;
+            bottom: 50%;
+            right: 200px;
+            transform: translateY(-50%);
+            background: #05050500;
+            padding: 10px;
+            border: 1px solid #eaeee900;
+            border-radius: 5px;
+            font-family: 'Jersey 10', sans-serif;
+            font-size: 30px;
+            color: aquamarine;
         }
         .title-image {
-            width: 50%; /* Adjust the size as needed */
+            width: 30%; /* Adjust the size as needed */
             height: auto; /* Maintain aspect ratio */
             display: flex;
             position: absolute;
             justify-content: center;
             align-items: center;
-            top: 40%;
-            right: 500px;
-            transform: translate(50%, -50%)
-        }
-        .start-button {
-            font-size: 2.0em;
-            display: flex;
-            position: absolute;
-            justify-content: center;
-            align-items: center;
-            bottom: 15%;
-            right: 500px;
-            transform: translate(50%, -50%);
-            padding: 10px 20px;
-            background-color: #086103;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .start-button:hover {
-            background-color: #065102;
-            transform: scale(1.1);
-        }
-        .sound-icon {
-            display: flex;
-            position: absolute;
-            justify-content: center;
-            align-items: center;
-            top: 5%;
+            top: 15%;
             left: 30px;
-            transform: translate(50%, -50%);
-            font-size: 15px;
-            color: #086103;
-            cursor: pointer;
+            transform: translate(30 -10%);
         }
-        .sound-icon:hover {
-            color: #065102;
+        .timer {
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            position: absolute;
+            top: 20%;
+            right: 250px;
+            transform: translate(50%, -50%);
+            font-family: 'Proxima Nova Bold', sans-serif;
+            font-size: 60px;
+            color: rgb(255, 127, 127);
+        }
+        .timer .colon {
+            width: 100px; /* Smaller width */
+            height: 50px; /* Fixed height */
+            object-fit: contain; /* Ensure the image fits within the specified dimensions */
+            margin: 0 5px; /* Adjust the margin */
+        }
+        .score {
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            top: 30%;
+            right: 250px;
+            transform: translate(50%, -50%);
+            background: #22a2f700;
+            padding: 10px;
+            border: 1px solid #2d03c500;
+            border-radius: 5px;
+            font-family: 'Proxima Nova Bold', sans-serif;
+            font-size: 50px;
+            color: rgb(85, 3, 3);
+            background-size: cover;
+            margin: 0 auto;
+            width: 200px;
+            height: 100px;
+        }
+        .text-box{
+            font-size: 18px;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0);
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0);
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            bottom: 40%;
+            left: 10px;
+            transform: translate(5%, -10%);
+            font-family: 'Proxima Nova Bold Italic', sans-serif;
+        }
+        .timer-text-box{
+            font-size: 30px;
+            color: rgb(3, 80, 20);
+            border: 2px solid rgba(255, 255, 255, 0);
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0);
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            bottom: 40%;
+            left: 10px;
+            transform: translate(5%, -10%);
         }
     </style>
 </head>
-<body>
+<body class="text-center">
     <div class="container">
-        <div class="left-strip"></div>
-        <div class="main-content">
-            <img src="assets/mix-and-match.png" alt="Mix & Match" class="title-image">
-            <i class="fas fa-volume-up sound-icon" onclick="playMusic()"></i>
-            <div class="start-button" onclick="startGame()">Start!</div>
+        <div class="left-strip">
+            <div class="text-box">
+                Find and match the pairs of your wedding items!
+            </div>
         </div>
+        <div class="main-content">
+        <img src="assets/mix-and-match.png" alt="Mix & Match" class="title-image">
+        <audio id="background-music" src="assets/background-music.mp3" autoplay loop></audio>
+        <div class="timer">
+            <img src="assets/timer-colon.png" alt="Colon" class="colon">
+            <span id="seconds">30s</span>
+            <div class="timer-text-box">
+                Time
+            </div>
+        </div>
+        <div class="score my-2">Score:<br><span id="score">0</span></div>
+        <div class="grid" id="grid">
+            <!-- Cards will be generated here -->
+        </div>
+        <div id="message" class="my-3"></div>
+      </div>
     </div>
-    <audio id="background-music" src="assets/background-music.mp3" loop></audio>
-    <script>
-        function startGame() {
-            window.location.href = 'index.html'; // Redirect to game page
-        }
-
-        function playMusic() {
-            const audio = document.getElementById('background-music');
-            audio.play().then(() => {
-                console.log('Music playing...');
-            }).catch(error => {
-                console.error('Music playback failed:', error);
-            });
-        }
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
