@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Flip card function
     function flipCard() {
-        if (flippedCards.length < 2 && !this.classList.contains('hidden')) {
+        if (flippedCards.length < 2 && !this.classList.contains('hidden') && !flippedCards.includes(this)) {
             this.querySelector('img').style.display = 'block';
             flippedCards.push(this);
             if (flippedCards.length === 2) {
