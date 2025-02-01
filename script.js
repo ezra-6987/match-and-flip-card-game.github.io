@@ -60,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.push(card);
     });
 
+    // Function to check if all cards are matched
+    function allCardsMatched() {
+        return cards.every(card => card.classList.contains('hidden'));
+    }
+
     // Flip card function
     function flipCard() {
         if (flippedCards.length < 2 && !this.classList.contains('hidden') && !flippedCards.includes(this)) {
@@ -79,6 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
             card2.classList.add('hidden');
             score++;
             scoreDisplay.textContent = score;
+
+            // Check if all cards are matched
+            if (allCardsMatched()) {
+                clearInterval(timerInterval);
+                checkScore(); // If all cards are matched, stop the timer and check the score
+            }
         } else {
             card1.querySelector('img').style.display = 'none';
             card2.querySelector('img').style.display = 'none';
@@ -140,7 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDisplay.style.position = 'relative'; // Ensure parent element is positioned
         messageDisplay.appendChild(img);
     }
-    
-    
-
 });
+
